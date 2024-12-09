@@ -1,14 +1,15 @@
-package com.wh.pojo;
+package com.wh.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemIn {
-    private int itemID;
-    private int orderID;
-    private boolean found;
+public class DateDTO {
+    private Date startDate;
+    private Date endDate;
 }

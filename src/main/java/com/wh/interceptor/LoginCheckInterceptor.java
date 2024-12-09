@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wh.pojo.Result;
 import com.wh.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.codehaus.jettison.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -24,6 +23,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         log.info("Request URL : " + url);
 
         String jwt = request.getHeader("token");
+
+        if(jwt== null||jwt.isEmpty()){return true;}
 
         if(!StringUtils.hasLength(jwt)){
             log.info("JWT is empty");
