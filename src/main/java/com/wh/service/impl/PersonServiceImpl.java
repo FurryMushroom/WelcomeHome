@@ -17,23 +17,23 @@ public class PersonServiceImpl implements PersonService {
     private PersonMapper personMapper;
 
     @Override
-//    public Person login(Person person) {
-//        String hashedPassword = hashPassword(person.getPassword());
-//
-//        Person user = new Person();
-//        user.setUserName(person.getUserName());
-//        user.setPassword(hashedPassword);
-//        System.out.println(hashedPassword);
-//
-//        return personMapper.getByUsernameAndPassword(user);
-//    }
     public Person login(Person person) {
-        // 不加密，直接查询
+        String hashedPassword = hashPassword(person.getPassword());
+
         Person user = new Person();
         user.setUserName(person.getUserName());
-        user.setPassword(person.getPassword());
+        user.setPassword(hashedPassword);
+        System.out.println(hashedPassword);
+
         return personMapper.getByUsernameAndPassword(user);
     }
+//    public Person login(Person person) {
+//        // 不加密，直接查询
+//        Person user = new Person();
+//        user.setUserName(person.getUserName());
+//        user.setPassword(person.getPassword());
+//        return personMapper.getByUsernameAndPassword(user);
+//    }
 
     @Override
     public String hashPassword(String password) {
