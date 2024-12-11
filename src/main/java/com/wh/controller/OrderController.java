@@ -43,7 +43,8 @@ public class OrderController {
     }
 
     @GetMapping("/getCategory")
-    public Result getCategory(@RequestBody Category category) {
+    public Result getCategory(@RequestParam String mainCategory, String subCategory) {
+        Category category=new Category(mainCategory,subCategory,"NOnOtes");
         List<Item> itemList = orderService.getCategory(category);
         if (itemList.isEmpty()) {
             return Result.error("No items found for category: " + category.getMainCategory() + ", " + category.getSubCategory());
