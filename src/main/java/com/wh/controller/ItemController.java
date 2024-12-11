@@ -37,16 +37,15 @@ public class ItemController {
         return Result.success(locations);
     }
 
-    @GetMapping("/order")
-    public Result findOrderItems(@RequestParam String orderid) {
-        log.info("Finding items for order: {}", orderid);
-        List<OrderItemLocationDTO> orderItems = itemService.findOrderItems(orderid);
+    @GetMapping("/order/{orderID}")
+    public Result findOrderItems(@PathVariable("orderID") String orderID) {
+        log.info("Finding items for order: {}", orderID);
+        List<OrderItemLocationDTO> orderItems = itemService.findOrderItems(orderID);
         if (orderItems.isEmpty()) {
-            return Result.error("No items found for order ID: " + orderid);
+            return Result.error("No items found for order ID: " + orderID);
         }
         return Result.success(orderItems);
     }
-
 
 
 

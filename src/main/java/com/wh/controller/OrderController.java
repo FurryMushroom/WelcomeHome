@@ -33,8 +33,11 @@ public class OrderController {
     }
 
     @GetMapping("/newOrder")
-    public Result newOrder() {
-        int orderID = orderService.newOrder();
+    public Result newOrder(@RequestParam String client, String supervisor) {
+        Ordered ordered=new Ordered();
+        ordered.setSupervisor(supervisor);
+        ordered.setClient(client);
+        int orderID = orderService.newOrder(ordered);
         if (orderID > 0) {
             return Result.success(orderID);
         } else {
