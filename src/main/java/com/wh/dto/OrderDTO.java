@@ -1,3 +1,4 @@
+
 package com.wh.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +12,4 @@ import lombok.NoArgsConstructor;
 public class OrderDTO {
     private String itemID;
     private String orderID;
-    private String supervisor;
-    private String client;
-    private String orderNotes;
 }

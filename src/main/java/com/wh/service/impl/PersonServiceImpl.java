@@ -18,7 +18,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person login(Person person) {
-        String hashedPassword = hashPassword(person.getPassword());
+        String salt = person.getUserName() + "WELCOME_HOME";
+        String hashedPassword = hashPassword(person.getPassword(), salt);
 
         Person user = new Person();
         user.setUserName(person.getUserName());
@@ -28,7 +29,6 @@ public class PersonServiceImpl implements PersonService {
         return personMapper.getByUsernameAndPassword(user);
     }
 //    public Person login(Person person) {
-//        // 不加密，直接查询
 //        Person user = new Person();
 //        user.setUserName(person.getUserName());
 //        user.setPassword(person.getPassword());
@@ -36,10 +36,11 @@ public class PersonServiceImpl implements PersonService {
 //    }
 
     @Override
-    public String hashPassword(String password) {
+    public String hashPassword(String password, String salt) {
         try {
+            String saltedPassword = salt + password;
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hashBytes = digest.digest(password.getBytes());
+            byte[] hashBytes = digest.digest(saltedPassword.getBytes());
             return Base64.getEncoder().encodeToString(hashBytes);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error hashing password", e);

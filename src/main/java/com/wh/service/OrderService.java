@@ -1,3 +1,4 @@
+
 package com.wh.service;
 
 import com.wh.dto.CategoryDTO;
@@ -22,5 +23,8 @@ public interface OrderService {
     List<RelevantOrderDTO> getRelevantOrders(Person person);
 
     List<CategoryDTO> getPopularCategories(DateDTO dateDTO);
+
     List<Category> getExistingCategory();
+
+    Ordered getCurrentOrder(String orderID);
 }
